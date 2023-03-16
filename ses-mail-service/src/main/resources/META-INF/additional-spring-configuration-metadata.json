@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "request.validation.email",
+  "type": "java.lang.String",
+  "description": "A description for 'request.validation.email'"
+}]}
