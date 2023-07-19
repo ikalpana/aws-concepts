@@ -3,11 +3,15 @@ package com.dynamodb.demo.service;
 import java.util.List;
 
 import com.dynamodb.demo.entity.Product;
+import com.dynamodb.demo.request.CreateProductRequest;
+import com.dynamodb.demo.response.Response;
 
 public interface ProductService {
     List<Product> getProductList();
-    Product saveProduct(Product product);
+    Response saveProduct(CreateProductRequest product);
     Product getProductById(String id);
-    Product updateProduct(String id,Product product);
-    void deleteProduct(String id);
+    Response updateProduct(String id,CreateProductRequest product);
+    Response deleteProduct(String id);
+    List<Product> getProductsByCategory(String category);
+
 }

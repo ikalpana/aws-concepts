@@ -5,6 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.dynamodb.demo.entity.Product;
+import com.dynamodb.demo.request.CreateProductRequest;
+import com.dynamodb.demo.response.Response;
 import com.dynamodb.demo.service.ProductService;
 
 import java.util.List;
@@ -15,7 +17,7 @@ public class ProductController {
     ProductService productService;
 
     @PostMapping("/product")
-    public ResponseEntity<Product> saveProduct(@RequestBody Product product){
+    public ResponseEntity<Response> saveProduct(@RequestBody CreateProductRequest product){
         return ResponseEntity.ok(productService.saveProduct(product));
     }
 
@@ -29,11 +31,19 @@ public class ProductController {
         return ResponseEntity.ok(productService.getProductList());
     }
     @PutMapping("/product/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable String id,@RequestBody Product product){
+    public ResponseEntity<Response> updateProduct(@PathVariable String id,@RequestBody CreateProductRequest product){
         return ResponseEntity.ok(productService.updateProduct(id,product));
     }
     @DeleteMapping("/product/{id}")
-    public void deleteProductById(@PathVariable String id){
-        productService.deleteProduct(id);
+    public ResponseEntity<Response> deleteProductById(@PathVariable String id){
+    	return ResponseEntity.ok(productService.deleteProduct(id));
+        
     }
+    
+    @GetMapping("/products/{category}")
+    public ResponseEntity<List<Product>> getProductsByCategory(@PathVariable String category){
+        return ResponseEntity.ok(productService.getProductsByCategory(category));
+    }
+    
+    
 }
