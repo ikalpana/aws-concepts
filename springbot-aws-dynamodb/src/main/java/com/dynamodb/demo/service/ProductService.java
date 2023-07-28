@@ -12,6 +12,8 @@ public interface ProductService {
     Product getProductById(String id);
     Response updateProduct(String id,CreateProductRequest product);
     Response deleteProduct(String id);
-    List<Product> getProductsByCategory(String category);
+    List<Product> getProductsByProductName(String productName);
+
+  
 
 }
